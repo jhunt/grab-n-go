@@ -7,12 +7,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: build all the images
+    - name: build grab-n-go/base:latest
       run: |
-        pushd base
+        cd base
         ./build
-        popd
-
-        pushd redis-server
-        ./build
-        popd
+    - name: build grab-n-go/redis-server:5.0.7
+        cd redis-server
+        ./build 5.0.7
