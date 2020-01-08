@@ -12,5 +12,6 @@ jobs:
         cd base
         ./build
     - name: build grab-n-go/redis-server:5.0.7
+      run: |
         cd redis-server
         ./build 5.0.7
