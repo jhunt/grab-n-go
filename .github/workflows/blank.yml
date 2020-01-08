@@ -1,5 +1,4 @@
-name: CI
-
+name: ci/cd
 on: [push]
 
 jobs:
@@ -8,15 +7,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build the grab-n-go/base image
+    - name: build all the images
       run: |
-        pwd
-        ls -alh
-        cd base
+        pushd base
         ./build
-    - name: Package redis-server
-      run: |
-        pwd
-        ls -alh
-        cd redis-server
+        popd
+
+        pushd redis-server
         ./build
+        popd
