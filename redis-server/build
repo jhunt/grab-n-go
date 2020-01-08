@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+REDIS_VERSION=5.0.7
+export REDIS_VERSION
+
+envsubst '$REDIS_VERSION' <Dockerfile.tpl >Dockerfile
+docker build -t grab-n-go/redis-server:${REDIS_VERSION} .
+docker run --rm \
+  -e S3_BUCKET=grab-n-go \
+  -e S3_AKI=$S3_AKI \
+  -e S3_KEY=$S3_KEY \
+  grab-n-go/redis-server:${REDIS_VERSION}
+rm -f Dockerfile

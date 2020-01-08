@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+v=$(cat .version)
+s3 put redis-server --to redis/${v}/redis-server
+s3 put redis-cli    --to redis/${v}/redis-cli
+exit 0
