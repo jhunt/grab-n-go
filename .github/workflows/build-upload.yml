@@ -1,4 +1,4 @@
-name: ci/cd
+name: Build & Upload S3 Assets
 on: [push]
 
 jobs:
@@ -11,7 +11,11 @@ jobs:
       run: |
         cd base
         ./build
+
     - name: build grab-n-go/redis-server:5.0.7
+      env:
+        S3_AKI: ${{ secrets.S3_AKI }}
+        S3_KEY: ${{ secrets.S3_KEY }}
       run: |
         cd redis-server
         ./build 5.0.7
